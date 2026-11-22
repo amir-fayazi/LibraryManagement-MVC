@@ -1,0 +1,13 @@
+@model BookDto
+<article class="book-card">
+    <a asp-controller="Books" asp-action="Details" asp-route-id="@Model.Id" class="book-card__link">
+        <div class="book-card__image-wrapper">
+            <img class="book-card__image" src="@Model.ImagePath" alt="جلد کتاب @Model.Title" loading="lazy" />
+        </div>
+        <h3 class="book-card__title">@Model.Title</h3>
+        <p class="book-card__author">@Model.Author</p>
+        <p class="book-card__pages">@Model.PageCount صفحه</p>
+        <p class="book-card__price">@Model.Price.ToString("N0") ت</p>
+        @if (!Model.IsAvailable) { <span class="book-card__unavailable">در امانت</span> }
+    </a>
+</article>

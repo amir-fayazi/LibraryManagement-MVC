@@ -1,0 +1,11 @@
+@model RegisterVm
+@{ ViewData["Title"] = "ثبت‌نام"; }
+<section class="container page-section page-section--narrow"><div class="page-heading"><h1>ساخت حساب کاربری</h1></div>
+<form asp-action="Register" method="post" class="ui-panel ui-form">
+    <div asp-validation-summary="All" class="ui-validation"></div>
+    <label>نام کاربری<input asp-for="Username" autocomplete="username" /></label>
+    <label>رمز عبور<input asp-for="Password" type="password" autocomplete="new-password" /></label>
+    <label>تکرار رمز عبور<input asp-for="ConfirmPassword" type="password" autocomplete="new-password" /></label>
+    <button type="submit" class="ui-btn">ثبت‌نام</button>
+    <p>قبلاً ثبت‌نام کرده‌اید؟ <a class="ui-link" asp-action="Login">ورود</a>.</p>
+</form></section>

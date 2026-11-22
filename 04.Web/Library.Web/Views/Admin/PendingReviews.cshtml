@@ -1,0 +1,8 @@
+@model List<ReviewDto>
+@{ ViewData["Title"] = "نظرات در انتظار تأیید"; }
+<section class="container page-section"><div class="page-heading"><h1>بررسی نظرهای کاربران</h1></div><div class="stack-list">
+@foreach (var review in Model)
+{
+<article class="ui-panel"><h2>@review.BookTitle</h2><p>کاربر: @review.Username | امتیاز: @review.Rating از ۵</p><p>@review.Comment</p><div class="ui-actions"><form asp-action="Approve" method="post"><input type="hidden" name="id" value="@review.Id" /><button type="submit" class="ui-btn">تأیید</button></form><form asp-action="Reject" method="post"><input type="hidden" name="id" value="@review.Id" /><button type="submit" class="ui-btn ui-btn--danger">رد نظر</button></form></div></article>
+}
+</div>@if (!Model.Any()) { <p class="empty-state">نظری در انتظار بررسی نیست.</p> }</section>

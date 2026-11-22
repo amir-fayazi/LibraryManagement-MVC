@@ -1,0 +1,18 @@
+@model List<CategoryDto>
+@{ ViewData["Title"] = "دسته‌بندی‌ها"; }
+<section class="container page-section">
+    <div class="page-heading"><div><h1>دسته‌بندی کتاب‌ها</h1><p>از موضوع مورد علاقه خود شروع کنید.</p></div>
+    @if (Context.Session.GetInt32("IsAdmin") == 1) { <a class="ui-btn" asp-action="Create">افزودن دسته‌بندی</a> }</div>
+    <div class="category-grid">
+        @foreach (var category in Model)
+        {
+            <article class="category-tile">
+                <a asp-controller="Books" asp-action="Index" asp-route-categoryId="@category.Id"><img src="@category.ImagePath" alt="" /><h2>@category.Name</h2><p>@category.Description</p><small>@category.BookCount کتاب</small></a>
+                @if (Context.Session.GetInt32("IsAdmin") == 1)
+                {
+                    <div class="ui-actions"><a class="ui-btn ui-btn--outline" asp-action="Edit" asp-route-id="@category.Id">ویرایش</a><form asp-action="Delete" method="post" onsubmit="return confirm('دسته‌بندی حذف شود؟')"><input type="hidden" name="id" value="@category.Id" /><button class="ui-btn ui-btn--danger" type="submit">حذف</button></form></div>
+                }
+            </article>
+        }
+    </div>
+</section>

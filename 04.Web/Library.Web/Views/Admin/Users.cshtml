@@ -1,0 +1,3 @@
+@model List<UserDto>
+@{ ViewData["Title"] = "کاربران"; }
+<section class="container page-section"><div class="page-heading"><h1>کاربران کتابخانه</h1></div><div class="table-wrap"><table class="data-table"><thead><tr><th>شناسه</th><th>نام کاربری</th><th>نقش</th><th>جریمه</th></tr></thead><tbody>@foreach (var user in Model) { <tr><td>@user.Id</td><td>@user.Username</td><td>@(user.Role == UserRole.Admin ? "مدیر" : "عضو")</td><td>@user.PenaltyAmount.ToString("N0") تومان</td></tr> }</tbody></table></div></section>

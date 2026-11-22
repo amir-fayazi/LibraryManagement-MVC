@@ -1,0 +1,31 @@
+@model BookFormVm
+@{ var isEdit = Model.Id > 0; ViewData["Title"] = isEdit ? "ویرایش کتاب" : "ثبت کتاب جدید"; }
+<section class="book-create container">
+    <div class="book-create__heading">
+        <nav class="book-create__breadcrumb"><a asp-controller="Home" asp-action="Index">صفحه اصلی</a><span>/</span><span>@ViewData["Title"]</span></nav>
+        <h1 class="book-create__title">@ViewData["Title"]</h1>
+        <p class="book-create__subtitle">اطلاعات کتاب را وارد کنید تا در کتابخانه ثبت شود.</p>
+    </div>
+    <form class="book-create__form" asp-controller="Books" asp-action="@(isEdit ? "Edit" : "Create")" method="post" enctype="multipart/form-data">
+        <input asp-for="Id" type="hidden" /><input asp-for="ImagePath" type="hidden" />
+        <div asp-validation-summary="All" class="ui-validation"></div>
+        <div class="book-create__content">
+            <div class="book-create__fields">
+                <div class="book-create__field"><label class="book-create__label" asp-for="Title">عنوان کتاب *</label><input class="book-create__input" asp-for="Title" placeholder="نام کتاب" /></div>
+                <div class="book-create__field"><label class="book-create__label" asp-for="Author">نام نویسنده *</label><input class="book-create__input" asp-for="Author" placeholder="نام نویسنده" /></div>
+                <div class="book-create__field"><label class="book-create__label" asp-for="CategoryId">دسته‌بندی *</label><select class="book-create__select" asp-for="CategoryId"><option value="0">انتخاب دسته‌بندی</option>@foreach (var c in Model.Categories) { <option value="@c.Id">@c.Name</option> }</select></div>
+                <div class="book-create__field"><label class="book-create__label" asp-for="Price">قیمت (تومان) *</label><input class="book-create__input" asp-for="Price" type="number" step="1000" min="0" /></div>
+                <div class="book-create__field"><label class="book-create__label" asp-for="PageCount">تعداد صفحات *</label><input class="book-create__input" asp-for="PageCount" type="number" min="1" /></div>
+                <div class="book-create__field book-create__field--full"><label class="book-create__label" asp-for="Description">توضیحات کتاب</label><textarea class="book-create__textarea" asp-for="Description" rows="5"></textarea></div>
+            </div>
+            <aside class="book-create__upload-panel">
+                <h2 class="book-create__upload-title">تصویر جلد کتاب</h2>
+                <div class="book-create__preview"><img class="book-create__preview-img" id="cover-preview" src="@(string.IsNullOrWhiteSpace(Model.ImagePath) ? "/images/books/cover-placeholder.svg" : Model.ImagePath)" alt="پیش‌نمایش جلد" /></div>
+                <input class="book-create__file-input" asp-for="CoverFile" accept=".jpg,.jpeg,.png,.webp" />
+                <label class="book-create__upload-control" for="CoverFile"><span class="book-create__upload-icon">↑</span> انتخاب تصویر جلد</label>
+                <p class="book-create__hint">JPG، PNG یا WEBP — حداکثر ۲ مگابایت</p>
+            </aside>
+        </div>
+        <div class="book-create__actions"><button class="book-create__submit" type="submit">@(isEdit ? "ذخیره تغییرات" : "ثبت کتاب")</button><a class="book-create__cancel" asp-controller="Books" asp-action="Index">انصراف</a></div>
+    </form>
+</section>

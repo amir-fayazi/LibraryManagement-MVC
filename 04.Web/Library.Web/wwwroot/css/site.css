@@ -1,0 +1,410 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+/* Font */
+
+@font-face {
+    font-family: "iran";
+    src: url('../fonts/iransansweb.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "iran";
+    src: url('../fonts/IRANSansWeb_Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+p, a, span {
+    font-weight: 400 !important;
+}
+
+
+/* CSS Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+}
+
+body {
+/*    min-height: 100vh;*/
+    font-family: 'iran';
+    font-weight: 400;
+    font-size: 1.6rem;
+    background-color: var(--color-background) !important;
+    color: var(--color-text);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+button, input, textarea, select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+/* Root ---------------------------------------------------*/
+
+:root {
+    --color-primary: #2563EB;
+    --color-text: #1E293B;
+    --color-muted: #64748B;
+    --color-white: #FFFFFF;
+    --color-background: #F1F5F9;
+}
+
+
+/*---------------------------------------------------*/
+
+.container {
+    max-width: 112rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.site-header {
+    height: 6rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.site-header__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-nav {
+}
+
+.site-login {
+}
+
+.site-nav__list {
+    align-items: stretch;
+    height: 6rem;
+    display: flex;
+    column-gap: 2rem;
+}
+
+.site-nav__item {
+    display: flex;
+}
+
+.site-nav__link {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    color: var(--color-text);
+    padding: 0 1rem;
+
+}
+
+    .site-nav__link:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        transition: all 0.25s ease;
+    }
+
+
+.site-login {
+    display: flex;
+    height: 4rem;
+}
+
+.site-login__btn {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+    border-radius: 0.6rem;
+    font-size: 2rem;
+    transition: all 0.25s ease;
+}
+
+    .site-login__btn:hover {
+        color: var(--color-primary);
+        background-color: var(--color-white);
+        border-color: var(--color-primary);
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+    }
+
+.hero {
+    margin-top: 5rem;
+    background: linear-gradient(105deg, #3984f5, #2441b4);
+    min-height: 26rem;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.16);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white)
+}
+
+.hero__title {
+    font-size: 4rem;
+}
+
+.hero__description {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+}
+
+.hero__button {
+    height:4rem;
+    margin-top: 2.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 17rem;
+    border-radius: 1rem;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    
+    font-weight: 700;
+}
+
+    .hero__button:hover {
+        background-color: #f1f5f9;
+        color: var(--color-primary);
+        border-color: #dbeafe;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.25s ease;
+        transform: translateY(-2px);
+    }
+
+
+.categories {
+    margin-top: 5.5rem;
+}
+.section-title{
+    text-align: center;
+    font-size: 2.4rem;
+}
+
+.categories__list {
+    display: flex;
+    column-gap: 1.8rem;
+    margin-top: 3rem;
+}
+
+.categories__item {
+    flex-grow: 1;
+}
+
+.category-card {
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    border-radius: 1rem;
+    box-shadow: 0 0.6rem 1rem rgba(0, 0, 0, 0.10);
+}
+.category-card--art {
+    background: #e0e7ff;
+    color: #3c42a2;
+}
+.category-card--fiction {
+    background: #fff9c7;
+    color: #90600e;
+}
+.category-card--philosophy {
+    background: #d9fbe7;
+    color: #17743a;
+}
+.category-card--science {
+    background: #dbeafe;
+    color: #2447a6;
+}
+.category-card--children {
+    background: #fce7f3;
+    color: #9c2256;
+}
+
+
+
+.category-card__icon {
+    font-size: 1.8rem;
+}
+
+.category-card__title {
+    font-size: 1.6rem;
+}
+
+.category-card__description {
+    font-size: 1.4rem;
+}
+
+.books{
+    margin-top:6rem;
+}
+
+.books-lists {
+    display: flex;
+    column-gap: 2rem;
+    margin-top: 5rem;
+}
+.book-card {
+    flex: 1;
+    background-color: var(--color-white);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
+    border-radius: 1.4rem;
+    min-height: 33.5rem;
+    overflow: hidden;
+}
+.book-card__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.book-card__image-wrapper {
+    width: 100%;
+    max-width: 18rem;
+    aspect-ratio: 180 / 280;
+    margin-bottom: 1.5rem;
+}
+
+.book-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.6rem;
+}
+.book-card__title {
+    
+    font-size: 1.3rem;
+}
+.book-card__author {
+    font-size: 1.1rem;
+    color: var(--color-muted);
+}
+.book-card__pages {
+    font-size: 1.1rem;
+    color: var(--color-muted);
+}
+.book-card__price {
+    /*    margin-top: 10px;*/
+    color: #ff1616;
+    font-size: 1.5rem;
+    font-weight: 700 !important;
+    direction: ltr;
+}
+
+.site-footer {
+    margin-top: 6rem;
+    background: #202b3b;
+}
+.site__content {
+    padding: 3.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.site-footer__title{
+    color: var(--color-white);
+    
+    }
+
+.site-footer__copyright {
+    font-size: 1.4rem;
+    color: var(--color-white)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/
+/**/

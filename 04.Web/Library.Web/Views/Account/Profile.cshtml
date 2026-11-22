@@ -1,0 +1,15 @@
+@model UserDto
+@{ ViewData["Title"] = "پروفایل من"; }
+<section class="container page-section">
+    <div class="page-heading"><div><h1>حساب کاربری من</h1><p>خوش آمدید، @Model.Username</p></div></div>
+    <div class="dashboard-grid">
+        <a class="dashboard-tile" asp-controller="Loans" asp-action="My"><strong>امانت‌های من</strong><span>مشاهده تاریخ امانت و بازگشت</span></a>
+        <a class="dashboard-tile" asp-controller="Wishlist" asp-action="Index"><strong>علاقه‌مندی‌ها</strong><span>کتاب‌های ذخیره‌شده</span></a>
+        <a class="dashboard-tile" asp-controller="Reviews" asp-action="My"><strong>نظرهای من</strong><span>ویرایش و حذف نظرها</span></a>
+        <div class="dashboard-tile"><strong>جریمه دیرکرد</strong><span class="ui-amount">@Model.PenaltyAmount.ToString("N0") تومان</span></div>
+    </div>
+    <div class="form-grid">
+        <form asp-action="ChangeUsername" method="post" class="ui-panel ui-form"><h2>تغییر نام کاربری</h2><label>نام کاربری جدید<input name="username" value="@Model.Username" required minlength="3" maxlength="30" /></label><button type="submit" class="ui-btn">ذخیره</button></form>
+        <form asp-action="ChangePassword" method="post" class="ui-panel ui-form"><h2>تغییر رمز عبور</h2><label>رمز فعلی<input type="password" name="currentPassword" required /></label><label>رمز جدید<input type="password" name="newPassword" required minlength="6" /></label><button type="submit" class="ui-btn">تغییر رمز</button></form>
+    </div>
+</section>

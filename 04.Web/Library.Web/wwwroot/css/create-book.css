@@ -1,0 +1,209 @@
+.book-create {
+    margin-top: 4rem;
+}
+
+.book-create__heading {
+    margin-bottom: 2.6rem;
+}
+
+.book-create__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.7rem;
+    color: var(--color-muted);
+    font-size: 1.7rem;
+}
+
+    .book-create__breadcrumb a {
+        color: var(--color-primary);
+    }
+
+.book-create__title {
+    font-size: 4rem;
+    line-height: 1.7;
+}
+
+.book-create__subtitle {
+    margin-top: 0.5rem;
+    color: var(--color-muted);
+}
+
+.book-create__form {
+    background-color: var(--color-white);
+    border-radius: 1.4rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    padding: 3rem;
+}
+
+.book-create__content {
+    display: flex;
+    gap: 3rem;
+}
+
+.book-create__fields {
+    flex: 1.6;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    /*background-color: antiquewhite;*/
+}
+
+.book-create__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: calc(50% - 1rem);
+    min-width: 0;
+}
+
+.book-create__label {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.book-create__required {
+    color: #ef4444;
+}
+
+.book-create__input {
+    min-height: 4.6rem;
+}
+
+.book-create__field--full {
+    flex-basis: 100%;
+}
+
+.book-create__textarea {
+    min-height: 12rem;
+}
+
+.book-create__input,
+.book-create__select,
+.book-create__textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 1.1rem 1.3rem;
+    font-size: 1.4rem;
+    border: 1px solid #cbd5e1;
+    border-radius: .8rem;
+    outline: none;
+    color: var(--color-text);
+    font-family: inherit;
+    background: var(--color-white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .book-create__input:focus,
+    .book-create__select:focus,
+    .book-create__textarea:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+/*********/
+.book-create__upload-panel {
+    flex: 0.9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.3rem;
+    border-right: 1px solid #e2e8f0;
+    padding-right: 3rem;
+}
+
+.book-create__upload-title {
+    font-size: 1.6rem;
+    color: var(--color-text);
+}
+
+.book-create__preview {
+    max-width: 18rem;
+    width: 100%;
+    aspect-ratio: 180 / 280;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 0.7rem;
+}
+
+.book-create__preview-img {
+    border-radius: .7rem;
+}
+
+.book-create__file-input {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    position: absolute;
+}
+
+.book-create__upload-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem 1.6rem;
+    border: 1px dashed var(--color-primary);
+    border-radius: 0.8rem;
+    color: var(--color-primary);
+    background-color: #eff6ff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.book-create__upload-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.book-create__hint {
+    color: var(--color-muted);
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+
+.book-create__actions {
+    margin-top: 3rem;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding-top: 2.4rem;
+}
+
+
+.book-create__submit,
+.book-create__cancel {
+    padding:.7rem 2.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.8rem;
+    border: 1px solid var(--color-primary);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+
+.book-create__submit {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+    .book-create__submit:hover {
+        background-color: var(--color-white);
+        color: var(--color-primary);
+    }
+
+
+.book-create__cancel {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+}
+
+    .book-create__cancel:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+    }

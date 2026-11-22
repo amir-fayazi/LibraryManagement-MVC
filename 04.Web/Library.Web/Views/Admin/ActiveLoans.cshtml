@@ -1,0 +1,3 @@
+@model List<LoanDto>
+@{ ViewData["Title"] = "امانت‌های فعال"; }
+<section class="container page-section"><div class="page-heading"><h1>امانت‌های فعال</h1></div><div class="table-wrap"><table class="data-table"><thead><tr><th>کاربر</th><th>کتاب</th><th>امانت</th><th>مهلت بازگشت</th></tr></thead><tbody>@foreach (var loan in Model) { <tr><td>@loan.Username</td><td>@loan.BookTitle</td><td>@loan.BorrowDate</td><td>@loan.DueDate</td></tr> }</tbody></table></div>@if (!Model.Any()) { <p class="empty-state">امانت فعالی وجود ندارد.</p> }</section>

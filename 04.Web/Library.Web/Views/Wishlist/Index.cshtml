@@ -1,0 +1,8 @@
+@model List<WishlistDto>
+@{ ViewData["Title"] = "علاقه‌مندی‌ها"; }
+<section class="container page-section"><div class="page-heading"><h1>لیست علاقه‌مندی‌های من</h1></div><div class="wishlist-grid">
+@foreach (var item in Model)
+{
+<article class="wishlist-item"><img src="@item.BookImagePath" alt="جلد کتاب @item.BookTitle" /><div><h2><a asp-controller="Books" asp-action="Details" asp-route-id="@item.BookId">@item.BookTitle</a></h2><p>@item.CategoryName</p><form asp-action="Remove" method="post"><input type="hidden" name="wishlistId" value="@item.Id" /><button class="ui-btn ui-btn--danger ui-btn--small" type="submit">حذف از علاقه‌مندی‌ها</button></form></div></article>
+}
+</div>@if (!Model.Any()) { <p class="empty-state">هنوز کتابی به علاقه‌مندی‌ها اضافه نکرده‌اید.</p> }</section>

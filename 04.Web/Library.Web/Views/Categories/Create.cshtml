@@ -1,0 +1,15 @@
+@model CategoryFormVm
+@{ var edit = Model.Id > 0; ViewData["Title"] = edit ? "ویرایش دسته‌بندی" : "دسته‌بندی جدید"; }
+<section class="container page-section page-section--narrow">
+    <div class="page-heading"><h1>@ViewData["Title"]</h1></div>
+    <form asp-action="@(edit ? "Edit" : "Create")" method="post" enctype="multipart/form-data" class="ui-panel ui-form">
+        <input asp-for="Id" type="hidden" />
+        <div asp-validation-summary="All" class="ui-validation"></div>
+        <label>نام دسته‌بندی<input asp-for="Name" required maxlength="80" /></label>
+        <label>توضیح کوتاه<input asp-for="Description" maxlength="300" /></label>
+        <input asp-for="ImagePath" type="hidden" />
+        <label>تصویر دسته‌بندی<input asp-for="ImageFile" type="file" accept=".jpg,.jpeg,.png,.webp" /></label>
+        <div class="ui-actions"><button type="submit" class="ui-btn">ذخیره دسته‌بندی</button><a class="ui-btn ui-btn--outline" asp-action="Index">انصراف</a></div>
+    </form>
+    <p class="ui-muted">تصاویر داخل wwwroot/images/categories ذخیره می‌شوند (حداکثر ۲ مگابایت).</p>
+</section>

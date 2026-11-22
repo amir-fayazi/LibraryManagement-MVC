@@ -1,0 +1,21 @@
+@model List<BookDto>
+@{ ViewData["Title"] = "کتاب‌ها"; var categories = ViewBag.Categories as List<CategoryDto> ?? new(); }
+<section class="container page-section">
+    <div class="page-heading"><div><h1>کتاب‌های کتابخانه</h1><p>جست‌وجو و انتخاب کتاب مورد علاقه</p></div></div>
+    <form method="get" asp-action="Index" class="filter-bar">
+        <label><span>جست‌وجو</span><input name="search" value="@ViewBag.Search" placeholder="نام کتاب یا نویسنده" /></label>
+        <label><span>دسته‌بندی</span><select name="categoryId"><option value="">همه دسته‌ها</option>
+            @foreach (var item in categories)
+            {
+                if ((int?)ViewBag.CategoryId == item.Id) { <option value="@item.Id" selected>@item.Name</option> }
+                else { <option value="@item.Id">@item.Name</option> }
+            }
+        </select></label>
+        <label class="ui-check"><input type="checkbox" name="availableOnly" value="true" checked="@((bool)ViewBag.AvailableOnly)" /> فقط کتاب‌های موجود</label>
+        <button type="submit" class="ui-btn">اعمال فیلتر</button>
+    </form>
+    <div class="books-lists books-lists--catalog">
+        @foreach (var book in Model) { <partial name="_BookCard" model="book" /> }
+    </div>
+    @if (!Model.Any()) { <p class="empty-state">کتابی با این مشخصات پیدا نشد.</p> }
+</section>

@@ -1,0 +1,30 @@
+@model HomePageVm
+@{ ViewData["Title"] = "صفحه اصلی"; }
+<section class="hero container">
+    <h1 class="hero__title">هر کتابی که می‌خواهی، اینجا هست</h1>
+    <p class="hero__description">کتاب‌ها را کشف کن، به علاقه‌مندی‌ها اضافه کن و امانت بگیر.</p>
+    <a class="hero__button" asp-controller="Books" asp-action="Index">مشاهده کتاب‌ها</a>
+</section>
+<section class="categories container" id="categories">
+    <h2 class="section-title">دسته‌بندی‌ها</h2>
+    <ul class="categories__list">
+        @foreach (var category in Model.Categories)
+        {
+            var variant = category.Id switch { 1 => "fiction", 2 => "philosophy", 3 => "science", 4 => "children", 5 => "art", _ => "default" };
+            <li class="categories__item">
+                <a class="category-card category-card--@variant" asp-controller="Books" asp-action="Index" asp-route-categoryId="@category.Id">
+                    <img class="category-card__image" src="@category.ImagePath" alt="" loading="lazy" />
+                    <h3 class="category-card__title">@category.Name</h3>
+                    <p class="category-card__description">@category.Description</p>
+                </a>
+            </li>
+        }
+    </ul>
+</section>
+<section class="books container" id="latest-books">
+    <h2 class="section-title">جدیدترین کتاب‌ها</h2>
+    <div class="books-lists">
+        @foreach (var book in Model.Latest) { <partial name="_BookCard" model="book" /> }
+    </div>
+    <div class="section-action"><a class="ui-btn ui-btn--outline" asp-controller="Books" asp-action="Index">مشاهده همه کتاب‌ها</a></div>
+</section>

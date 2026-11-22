@@ -1,0 +1,10 @@
+@model LoginVm
+@{ ViewData["Title"] = "ورود"; }
+<section class="container page-section page-section--narrow"><div class="page-heading"><h1>ورود به حساب کاربری</h1></div>
+<form asp-action="Login" method="post" class="ui-panel ui-form">
+    <div asp-validation-summary="All" class="ui-validation"></div>
+    <label>نام کاربری<input asp-for="Username" autocomplete="username" /></label>
+    <label>رمز عبور<input asp-for="Password" type="password" autocomplete="current-password" /></label>
+    <button class="ui-btn" type="submit">ورود</button>
+    <p>حساب ندارید؟ <a class="ui-link" asp-action="Register">ثبت‌نام کنید</a>.</p>
+</form></section>

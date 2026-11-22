@@ -1,0 +1,4 @@
+@{ ViewData["Title"] = "پنل مدیریت"; }
+<section class="container page-section"><div class="page-heading"><h1>پنل مدیریت کتابخانه</h1></div>
+<div class="dashboard-grid"><a class="dashboard-tile" asp-controller="Books" asp-action="Index"><strong>@ViewBag.BookCount کتاب</strong><span>مدیریت کتاب‌ها</span></a><a class="dashboard-tile" asp-action="Users"><strong>@ViewBag.UserCount کاربر</strong><span>فهرست کاربران</span></a><a class="dashboard-tile" asp-action="ActiveLoans"><strong>@ViewBag.ActiveLoans امانت فعال</strong><span>پیگیری امانت‌ها</span></a><a class="dashboard-tile" asp-action="PendingReviews"><strong>@ViewBag.PendingReviews نظر جدید</strong><span>تأیید یا رد نظرها</span></a></div>
+<div class="ui-actions"><a class="ui-btn" asp-controller="Books" asp-action="Create">ثبت کتاب جدید</a><a class="ui-btn ui-btn--outline" asp-controller="Categories" asp-action="Create">دسته‌بندی جدید</a></div></section>

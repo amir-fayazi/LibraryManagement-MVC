@@ -1,0 +1,49 @@
+@model BookDetailsVm
+@{ ViewData["Title"] = Model.Book.Title; var book = Model.Book; }
+<section class="container page-section">
+    <nav class="crumb"><a asp-controller="Home" asp-action="Index">خانه</a><span>/</span><a asp-action="Index">کتاب‌ها</a><span>/</span><span>@book.Title</span></nav>
+    <div class="detail-card">
+        <div class="detail-card__cover"><img src="@book.ImagePath" alt="جلد کتاب @book.Title" /></div>
+        <div class="detail-card__info">
+            <span class="ui-kicker">@book.CategoryName</span>
+            <h1>@book.Title</h1>
+            <p>نویسنده: <strong>@book.Author</strong></p>
+            <p>تعداد صفحات: @book.PageCount</p>
+            <p>امتیاز کاربران: @(book.AverageRating?.ToString("0.0") ?? "بدون امتیاز") از ۵</p>
+            <p class="detail-card__price">@book.Price.ToString("N0") تومان</p>
+            @if (book.IsAvailable) { <span class="ui-tag ui-tag--ok">قابل امانت</span> }
+            else { <span class="ui-tag ui-tag--warn">در حال امانت</span> }
+            <p class="detail-card__description">@book.Description</p>
+            <div class="ui-actions">
+                @if (book.IsAvailable)
+                {
+                    <form asp-controller="Loans" asp-action="Borrow" method="post"><input type="hidden" name="bookId" value="@book.Id" /><button class="ui-btn" type="submit">امانت گرفتن</button></form>
+                }
+                <form asp-controller="Wishlist" asp-action="Add" method="post"><input type="hidden" name="bookId" value="@book.Id" /><button class="ui-btn ui-btn--outline" type="submit">افزودن به علاقه‌مندی</button></form>
+                @if (Context.Session.GetInt32("IsAdmin") == 1)
+                {
+                    <a class="ui-btn ui-btn--outline" asp-action="Edit" asp-route-id="@book.Id">ویرایش کتاب</a>
+                    <form asp-action="Delete" method="post" onsubmit="return confirm('کتاب حذف شود؟')"><input type="hidden" name="id" value="@book.Id" /><button class="ui-btn ui-btn--danger" type="submit">حذف</button></form>
+                }
+            </div>
+        </div>
+    </div>
+    <section class="reviews-section">
+        <h2>نظرها و امتیازها</h2>
+        @if (Context.Session.GetInt32("UserId").HasValue)
+        {
+            <form class="ui-panel review-form" asp-controller="Reviews" asp-action="Create" method="post">
+                <input type="hidden" name="bookId" value="@book.Id" />
+                <label>امتیاز (۱ تا ۵)<select name="rating" required><option value="5">۵ ستاره</option><option value="4">۴ ستاره</option><option value="3">۳ ستاره</option><option value="2">۲ ستاره</option><option value="1">۱ ستاره</option></select></label>
+                <label>متن نظر<textarea name="comment" maxlength="1000" rows="3" placeholder="نظر شما درباره کتاب"></textarea></label>
+                <button class="ui-btn" type="submit">ثبت نظر برای تأیید</button>
+            </form>
+        }
+        else { <p><a asp-controller="Account" asp-action="Login">برای ثبت نظر وارد شوید.</a></p> }
+        @foreach (var review in Model.Reviews)
+        {
+            <article class="review-item"><div class="review-item__head"><strong>@review.Username</strong><span>@review.Rating از ۵ ★</span></div><p>@review.Comment</p></article>
+        }
+        @if (!Model.Reviews.Any()) { <p class="empty-state">هنوز نظری تأیید نشده است.</p> }
+    </section>
+</section>

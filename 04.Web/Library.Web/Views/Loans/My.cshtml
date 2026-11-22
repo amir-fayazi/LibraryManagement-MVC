@@ -1,0 +1,8 @@
+@model List<LoanDto>
+@{ ViewData["Title"] = "امانت‌های من"; }
+<section class="container page-section"><div class="page-heading"><h1>کتاب‌های امانت‌گرفته‌شده</h1></div><div class="table-wrap"><table class="data-table"><thead><tr><th>کتاب</th><th>تاریخ امانت</th><th>مهلت بازگشت</th><th>وضعیت</th><th>جریمه</th><th>عملیات</th></tr></thead><tbody>
+@foreach (var loan in Model)
+{
+<tr><td><a class="ui-link" asp-controller="Books" asp-action="Details" asp-route-id="@loan.BookId">@loan.BookTitle</a></td><td>@loan.BorrowDate</td><td>@loan.DueDate</td><td>@(loan.IsReturned ? "بازگشت داده شد" : "در امانت")</td><td>@loan.FineAmount.ToString("N0") تومان</td><td>@if (!loan.IsReturned) { <form asp-action="Return" method="post"><input type="hidden" name="loanId" value="@loan.Id" /><button class="ui-btn ui-btn--small" type="submit">بازگرداندن</button></form> }</td></tr>
+}
+</tbody></table></div>@if (!Model.Any()) { <p class="empty-state">هنوز کتابی امانت نگرفته‌اید.</p> }</section>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | خانه کتاب</title>
+    <link rel="stylesheet" href="~/css/site-responsive.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/create-book.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <nav class="site-nav" aria-label="ناوبری اصلی">
+                <ul class="site-nav__list">
+                    <li class="site-nav__item"><a class="site-nav__link" asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" asp-controller="Books" asp-action="Index">کتاب‌ها</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" asp-controller="Categories" asp-action="Index">دسته‌بندی‌ها</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" asp-controller="Home" asp-action="About">درباره ما</a></li>
+                    <li class="site-nav__item"><a class="site-nav__link" asp-controller="Home" asp-action="Contact">تماس با ما</a></li>
+                    @if (Context.Session.GetInt32("IsAdmin") == 1)
+                    {
+                        <li class="site-nav__item"><a class="site-nav__link" asp-controller="Admin" asp-action="Index">مدیریت</a></li>
+                    }
+                </ul>
+            </nav>
+            <div class="site-login">
+                @if (Context.Session.GetInt32("UserId").HasValue)
+                {
+                    <a class="site-login__btn" asp-controller="Account" asp-action="Profile">حساب من</a>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        <button class="site-login__btn site-login__btn--outline" type="submit">خروج</button>
+                    </form>
+                }
+                else
+                {
+                    <a class="site-login__btn" asp-controller="Account" asp-action="Login">ورود</a>
+                    <a class="site-login__btn site-login__btn--outline" asp-controller="Account" asp-action="Register">ثبت‌نام</a>
+                }
+            </div>
+        </div>
+    </header>
+    <main class="site-main">
+        @if (TempData["Notice"] is string notice)
+        {
+            <div class="container ui-alert ui-alert--success" role="status">@notice</div>
+        }
+        @if (TempData["Error"] is string error)
+        {
+            <div class="container ui-alert ui-alert--danger" role="alert">@error</div>
+        }
+        @RenderBody()
+    </main>
+    <footer class="site-footer">
+        <div class="container site__content">
+            <p class="site-footer__title">خانه کتاب | منبع آموزش و مطالعه</p>
+            <small class="site-footer__copyright">پروژه آموزشی ASP.NET Core MVC — © 2026</small>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+@model List<ReviewDto>
+@{ ViewData["Title"] = "نظرهای من"; }
+<section class="container page-section"><div class="page-heading"><h1>نظرها و امتیازهای من</h1></div><div class="stack-list">
+@foreach (var review in Model)
+{
+<article class="ui-panel"><h2><a class="ui-link" asp-controller="Books" asp-action="Details" asp-route-id="@review.BookId">@review.BookTitle</a></h2><p>وضعیت: @(review.Status == ReviewStatus.Pending ? "در انتظار تأیید" : review.Status == ReviewStatus.Approved ? "تأیید شده" : "رد شده")</p>
+<form asp-action="Edit" method="post" class="ui-form"><input type="hidden" name="reviewId" value="@review.Id" /><label>امتیاز<select name="rating">@for(var n = 1; n <= 5; n++) { if(n == review.Rating) { <option value="@n" selected>@n</option> } else { <option value="@n">@n</option> } }</select></label><label>متن نظر<textarea name="comment" maxlength="1000" rows="2">@review.Comment</textarea></label><div class="ui-actions"><button class="ui-btn ui-btn--small" type="submit">ذخیره و ارسال برای بررسی</button></div></form>
+<form asp-action="Delete" method="post" onsubmit="return confirm('نظر حذف شود؟')"><input type="hidden" name="reviewId" value="@review.Id" /><button class="ui-btn ui-btn--danger ui-btn--small" type="submit">حذف نظر</button></form></article>
+}
+</div>@if (!Model.Any()) { <p class="empty-state">هنوز نظری ثبت نکرده‌اید.</p> }</section>
