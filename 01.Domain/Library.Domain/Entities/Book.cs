@@ -6,8 +6,8 @@ public class Book : BaseEntity
     public string Author { get; private set; } = "";
     public decimal Price { get; private set; }
     public int PageCount { get; private set; }
-    public string Description { get; private set; } = "";
-    public string ImagePath { get; private set; } = "";
+    public string? Description { get; private set; } = "";
+    public string? ImagePath { get; private set; } = "";
     public DateTime CreatedAt { get; private set; }
     public int CategoryId { get; private set; }
     public Category Category { get; private set; } = null!;
@@ -15,7 +15,7 @@ public class Book : BaseEntity
     public List<Review> Reviews { get; private set; } = new();
     public List<Wishlist> Wishlists { get; private set; } = new();
     private Book() { }
-    public Book(string title, string author, Category category, decimal price, int pageCount, string description, string imagePath)
+    public Book(string title, string author, Category category, decimal price, int pageCount, string description, string? imagePath = "")
     {
         CreatedAt = DateTime.UtcNow;
         Update(title, author, category, price, pageCount, description, imagePath);

@@ -16,7 +16,7 @@ public class BookFormVm
     public int PageCount { get; set; }
     [StringLength(2000)]
     public string Description { get; set; } = "";
-    public string ImagePath { get; set; } = "";
+    public string? ImagePath { get; set; } = "";
     public IFormFile? CoverFile { get; set; }
     public List<CategoryDto> Categories { get; set; } = new();
 }
