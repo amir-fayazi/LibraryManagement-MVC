@@ -1,5 +1,7 @@
 # Library Management MVC
 
+![Library Management Demo](docs/library-management-demo.gif)
+
 A library management web application built with **ASP.NET Core MVC (.NET 10)**, **EF Core**, and **SQL Server**.
 
 ## Features
